@@ -33,9 +33,12 @@ end
 
 
 #DELETE
-# get '/pizza-orders/delete' do
-#   erb(:delete)
-# end
+post '/pizza-orders/:id/delete' do
+  @order = PizzaOrder.delete(params[:id])
+  # @order.delete()
+  redirect to 'pizza-orders'
+end
+
 
 #EDIT
 get '/pizza-orders/:id/edit' do
@@ -43,12 +46,11 @@ get '/pizza-orders/:id/edit' do
   erb(:edit)
 end
 
-post '/pizza-orders/:id/delete' do
-  @order = PizzaOrder.delete(params[:id])
-  # @order.delete()
+#UPDATE
+post '/pizza-orders/:id' do
+  PizzaOrder.new(params).update
   redirect to 'pizza-orders'
 end
-
 
 
 #SHOW
